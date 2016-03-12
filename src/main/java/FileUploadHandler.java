@@ -29,6 +29,7 @@ import org.json.simple.JSONObject;
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+			response.setContentType("text/html;charset=UTF-8");
 	try (PrintWriter out = response.getWriter()) {
 		OSConnector conn = new OSConnector();
 		
