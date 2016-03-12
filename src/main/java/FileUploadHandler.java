@@ -40,9 +40,8 @@ import org.json.simple.JSONObject;
 		
 		String filename = null;
 		Payload upfile = null;
-		
-		if (conn.listAllObjects("sample").isEmpty())
-			conn.createContainer("sample");
+
+		conn.createContainer("sample");
 
 		if(ServletFileUpload.isMultipartContent(request)){
 			try{
@@ -90,9 +89,9 @@ import org.json.simple.JSONObject;
 						}
 					}
 					*/
-					response.setStatus(200);
+					//response.setStatus(200);
 					//request.setAttribute("result",finaltext);
-					response.sendRedirect("convert.jsp");
+					response.sendRedirect("index.jsp");
                 } catch (Exception e) {
                 }
 			} catch(Exception e){}
