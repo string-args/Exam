@@ -27,17 +27,16 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "FileUploadHandler", urlPatterns = {"/FileUploadHandler"})public class FileUploadHandler extends HttpServlet{
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 	try (PrintWriter out = response.getWriter()) {
 		OSConnector conn = new OSConnector();
 		
-							
+		/*	
 		S2TConnector conn1 = new S2TConnector();
 		SpeechToText service = new SpeechToText();
 		service.setUsernameAndPassword(conn1.getUsername(),conn1.getPassword());
-
+*/
 		
 		String filename = null;
 		Payload upfile = null;
@@ -69,7 +68,7 @@ import org.json.simple.JSONObject;
                     if (!filename.isEmpty() && !(upfile == null)) {
                         conn.uploadFile("sample", filename, upfile); //upload file to storage
                     }
-
+		/*
 					File audio = (File)conn.getFile(filename,"sample"); //get the uploaded file from storage
 			
 					JSONParser parser = new JSONParser();
@@ -90,10 +89,10 @@ import org.json.simple.JSONObject;
 								
 						}
 					}
-					
+					*/
 					response.setStatus(200);
-					request.setAttribute("result",finaltext);
-					request.getRequestDispatcher("/convert.jsp").forward(request,response);
+					//request.setAttribute("result",finaltext);
+					response.sendRedirect("convert.jsp");
                 } catch (Exception e) {
                 }
 			} catch(Exception e){}
