@@ -33,6 +33,12 @@ import org.json.simple.JSONObject;
 	try (PrintWriter out = response.getWriter()) {
 		OSConnector conn = new OSConnector();
 		
+							
+		S2TConnector conn1 = new S2TConnector();
+		SpeechToText service = new SpeechToText();
+		service.setUsernameAndPassword(conn1.getUsername(),conn1.getPassword());
+
+		
 		String filename = null;
 		Payload upfile = null;
 		
@@ -62,10 +68,6 @@ import org.json.simple.JSONObject;
                     if (!filename.isEmpty() && !(upfile == null)) {
                         conn.uploadFile("sample", filename, upfile); //upload file to storage
                     }
-					
-					S2TConnector conn1 = new S2TConnector();
-					SpeechToText service = new SpeechToText();
-					service.setUsernameAndPassword(conn1.getUsername(),conn1.getPassword());
 
 					File audio = (File)conn.getFile(filename,"sample"); //get the uploaded file from storage
 			
