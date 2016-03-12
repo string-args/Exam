@@ -11,7 +11,7 @@
 
         <div>
             <h3> Choose File to Upload: </h3>
-            <form action="FileUploadHandler" method="post" enctype="multipart/form-data">
+            <form action="FileUploadHandler" method="POST">
                 <input type="file" name="uploadfile" />
                 <input type="submit" value="upload" />
             </form>          

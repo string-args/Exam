@@ -27,12 +27,10 @@ import org.json.simple.JSONObject;
 
 @WebServlet(name = "FileUploadHandler", urlPatterns = {"/FileUploadHandler"})public class FileUploadHandler extends HttpServlet{
 
-
-
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-
+	try (PrintWriter out = response.getWriter()) {
 		OSConnector conn = new OSConnector();
 		
 		String filename = null;
@@ -90,15 +88,16 @@ import org.json.simple.JSONObject;
 						}
 					}
 					
+					response.setStatus(200);
 					request.setAttribute("result",finaltext);
-					request.getRequestDispatcher("convert.jsp").forward(request,response);
+					request.getRequestDispatcher("/convert.jsp").forward(request,response);
                 } catch (Exception e) {
                 }
 			} catch(Exception e){}
 			
 
 		}
-		
+	}
 	}
 
 	
