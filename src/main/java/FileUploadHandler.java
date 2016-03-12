@@ -42,8 +42,9 @@ import org.json.simple.JSONObject;
 		String filename = null;
 		Payload upfile = null;
 		
-		conn.createContainer("sample");
-			
+		if (conn.listAllObjects("sample").isEmpty())
+			conn.createContainer("sample");
+
 		if(ServletFileUpload.isMultipartContent(request)){
 			try{
 				 FileItemFactory factory = new DiskFileItemFactory();
